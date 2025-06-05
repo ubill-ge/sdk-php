@@ -1,0 +1,59 @@
+name: Generate SDK
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.CI_APP_ID }}
+          private-key: ${{ secrets.CI_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+
+      - name: Get GitHub App User ID
+        id: user-id
+        run: echo "id=$(gh api "/users/${{ steps.app-token.outputs.app-slug }}[bot]" --jq .id)" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          path: sdk
+
+      - name: Install File Post-processor
+        run: |
+          curl -sSL https://github.com/squizlabs/PHP_CodeSniffer/releases/download/3.7.2/phpcbf.phar -o /usr/local/bin/phpcbf
+          chmod +x /usr/local/bin/phpcbf
+
+      - name: Generate SDK
+        uses: ubill-ge/sdk-generator/.github/actions/generator@main
+        env:
+          PHP_POST_PROCESS_FILE: 'phpcbf -q --standard=PSR12 --extensions=php'
+        with:
+          github-token: ${{ steps.app-token.outputs.token }}
+          sdk: php
+          output-path: ./sdk
+
+      - name: Get SDK Version
+        id: gsv
+        run: |
+          PACKAGE_VERSION="$(jq -r '.version' ./sdk/composer.json)"
+
+          echo "version=${PACKAGE_VERSION}" >> "$GITHUB_OUTPUT"
+          
+          echo 1 > sdk/foo
+
+      - name: Create PR
+        uses: ubill-ge/sdk-generator/.github/actions/pr-creator@main
+        with:
+          github-token: ${{ steps.app-token.outputs.token }}
+          sdk: php
+          sdk-version: '${{ steps.gsv.outputs.version }}'
+          committer: '${{ steps.app-token.outputs.app-slug }}[bot] <${{ steps.user-id.outputs.id }}+${{ steps.app-token.outputs.app-slug }}[bot]@users.noreply.github.com>'
