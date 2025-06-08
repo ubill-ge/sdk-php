@@ -368,6 +368,7 @@ class SmsApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
@@ -620,6 +621,7 @@ class SmsApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
@@ -872,6 +874,7 @@ class SmsApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
@@ -1144,6 +1147,7 @@ class SmsApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
@@ -1409,6 +1413,7 @@ class SmsApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
@@ -1501,8 +1506,8 @@ class SmsApi
         string $rangeCode,
         int $statusCode
     ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
+        $left = (int) ($rangeCode[0].'00');
+        $right = (int) ($rangeCode[0].'99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }
