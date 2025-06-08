@@ -143,6 +143,7 @@ class HeaderSelector
         ];
 
         foreach ($accept as $header) {
+
             $headerData = $this->getHeaderAndWeight($header);
 
             if (stripos($headerData['header'], 'application/json') === 0) {
