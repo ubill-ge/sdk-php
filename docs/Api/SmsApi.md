@@ -8,7 +8,7 @@ All URIs are relative to https://api.ubill.dev/v1, except if the operation defin
 | [**getBalance()**](SmsApi.md#getBalance) | **GET** /sms/balance | Get SMS Balance |
 | [**getBrandNames()**](SmsApi.md#getBrandNames) | **GET** /sms/brandNames | Get All Brand Names |
 | [**getDeliveryReport()**](SmsApi.md#getDeliveryReport) | **GET** /sms/report/{smsID} | Get Delivery Report |
-| [**sendSms()**](SmsApi.md#sendSms) | **POST** /sms/send | Send SMS |
+| [**send()**](SmsApi.md#send) | **POST** /sms/send | Send SMS |
 
 
 ## `createBrandName()`
@@ -253,10 +253,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `sendSms()`
+## `send()`
 
 ```php
-sendSms($sMSPayload): \UBill\Sdk\Model\SendSMSResponse
+send($sMSPayload): \UBill\Sdk\Model\SendSMSResponse
 ```
 
 Send SMS
@@ -285,10 +285,10 @@ $apiInstance = new UBill\Sdk\Api\SmsApi(
 $sMSPayload = new \UBill\Sdk\Model\SMSPayload(); // \UBill\Sdk\Model\SMSPayload | SMS payload for sending messages
 
 try {
-    $result = $apiInstance->sendSms($sMSPayload);
+    $result = $apiInstance->send($sMSPayload);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling SmsApi->sendSms: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling SmsApi->send: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
