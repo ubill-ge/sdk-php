@@ -1,3 +1,4 @@
+.github/workflows/test-and-lint.yaml
 .gitignore
 .php-cs-fixer.dist.php
 CONTRIBUTING.md
