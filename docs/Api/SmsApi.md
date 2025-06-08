@@ -8,7 +8,7 @@ All URIs are relative to https://api.ubill.dev/v1, except if the operation defin
 | [**getBalance()**](SmsApi.md#getBalance) | **GET** /sms/balance | Get SMS Balance |
 | [**getBrandNames()**](SmsApi.md#getBrandNames) | **GET** /sms/brandNames | Get All Brand Names |
 | [**getDeliveryReport()**](SmsApi.md#getDeliveryReport) | **GET** /sms/report/{smsID} | Get Delivery Report |
-| [**sendSMS()**](SmsApi.md#sendSMS) | **POST** /sms/send | Send SMS |
+| [**sendSms()**](SmsApi.md#sendSms) | **POST** /sms/send | Send SMS |
 
 
 ## `createBrandName()`
@@ -18,6 +18,8 @@ createBrandName($createBrandNamePayload): \UBill\Sdk\Model\CreateBrandNameRespon
 ```
 
 Create Brand Name
+
+Register a new brand name for SMS messaging. Brand names are used to identify the sender of SMS messages (e.g., \"ubill-info\").
 
 ### Example
 
@@ -79,6 +81,8 @@ getBalance(): \UBill\Sdk\Model\SMSBalanceResponse
 
 Get SMS Balance
 
+Retrieve your current SMS balance, indicating how many messages you can send.
+
 ### Example
 
 ```php
@@ -135,6 +139,8 @@ getBrandNames(): \UBill\Sdk\Model\BrandNamesResponse
 ```
 
 Get All Brand Names
+
+Retrieve a list of all registered brand names associated with your account.
 
 ### Example
 
@@ -193,6 +199,8 @@ getDeliveryReport($smsID): \UBill\Sdk\Model\DeliveryReportResponse
 
 Get Delivery Report
 
+Fetch the delivery status of a previously sent SMS using its unique identifier.
+
 ### Example
 
 ```php
@@ -245,13 +253,15 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `sendSMS()`
+## `sendSms()`
 
 ```php
-sendSMS($sMSPayload): \UBill\Sdk\Model\SendSMSResponse
+sendSms($sMSPayload): \UBill\Sdk\Model\SendSMSResponse
 ```
 
 Send SMS
+
+Send SMS messages to one or multiple recipients using a registered brand name.
 
 ### Example
 
@@ -275,10 +285,10 @@ $apiInstance = new UBill\Sdk\Api\SmsApi(
 $sMSPayload = new \UBill\Sdk\Model\SMSPayload(); // \UBill\Sdk\Model\SMSPayload | SMS payload for sending messages
 
 try {
-    $result = $apiInstance->sendSMS($sMSPayload);
+    $result = $apiInstance->sendSms($sMSPayload);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling SmsApi->sendSMS: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling SmsApi->sendSms: ', $e->getMessage(), PHP_EOL;
 }
 ```
 

@@ -88,7 +88,7 @@ class SmsApi
         'getDeliveryReport' => [
             'application/json',
         ],
-        'sendSMS' => [
+        'sendSms' => [
             'application/json',
         ],
     ];
@@ -1185,38 +1185,38 @@ class SmsApi
     }
 
     /**
-     * Operation sendSMS
+     * Operation sendSms
      *
      * Send SMS
      *
      * @param  \UBill\Sdk\Model\SMSPayload|null $sMSPayload SMS payload for sending messages (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendSMS'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendSms'] to see the possible values for this operation
      *
      * @throws \UBill\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \UBill\Sdk\Model\SendSMSResponse
      */
-    public function sendSMS($sMSPayload = null, string $contentType = self::contentTypes['sendSMS'][0])
+    public function sendSms($sMSPayload = null, string $contentType = self::contentTypes['sendSms'][0])
     {
-        list($response) = $this->sendSMSWithHttpInfo($sMSPayload, $contentType);
+        list($response) = $this->sendSmsWithHttpInfo($sMSPayload, $contentType);
         return $response;
     }
 
     /**
-     * Operation sendSMSWithHttpInfo
+     * Operation sendSmsWithHttpInfo
      *
      * Send SMS
      *
      * @param  \UBill\Sdk\Model\SMSPayload|null $sMSPayload SMS payload for sending messages (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendSMS'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendSms'] to see the possible values for this operation
      *
      * @throws \UBill\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \UBill\Sdk\Model\SendSMSResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function sendSMSWithHttpInfo($sMSPayload = null, string $contentType = self::contentTypes['sendSMS'][0])
+    public function sendSmsWithHttpInfo($sMSPayload = null, string $contentType = self::contentTypes['sendSms'][0])
     {
-        $request = $this->sendSMSRequest($sMSPayload, $contentType);
+        $request = $this->sendSmsRequest($sMSPayload, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1288,19 +1288,19 @@ class SmsApi
     }
 
     /**
-     * Operation sendSMSAsync
+     * Operation sendSmsAsync
      *
      * Send SMS
      *
      * @param  \UBill\Sdk\Model\SMSPayload|null $sMSPayload SMS payload for sending messages (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendSMS'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendSms'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendSMSAsync($sMSPayload = null, string $contentType = self::contentTypes['sendSMS'][0])
+    public function sendSmsAsync($sMSPayload = null, string $contentType = self::contentTypes['sendSms'][0])
     {
-        return $this->sendSMSAsyncWithHttpInfo($sMSPayload, $contentType)
+        return $this->sendSmsAsyncWithHttpInfo($sMSPayload, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1309,20 +1309,20 @@ class SmsApi
     }
 
     /**
-     * Operation sendSMSAsyncWithHttpInfo
+     * Operation sendSmsAsyncWithHttpInfo
      *
      * Send SMS
      *
      * @param  \UBill\Sdk\Model\SMSPayload|null $sMSPayload SMS payload for sending messages (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendSMS'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendSms'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendSMSAsyncWithHttpInfo($sMSPayload = null, string $contentType = self::contentTypes['sendSMS'][0])
+    public function sendSmsAsyncWithHttpInfo($sMSPayload = null, string $contentType = self::contentTypes['sendSms'][0])
     {
         $returnType = '\UBill\Sdk\Model\SendSMSResponse';
-        $request = $this->sendSMSRequest($sMSPayload, $contentType);
+        $request = $this->sendSmsRequest($sMSPayload, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1361,15 +1361,15 @@ class SmsApi
     }
 
     /**
-     * Create request for operation 'sendSMS'
+     * Create request for operation 'sendSms'
      *
      * @param  \UBill\Sdk\Model\SMSPayload|null $sMSPayload SMS payload for sending messages (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendSMS'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendSms'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function sendSMSRequest($sMSPayload = null, string $contentType = self::contentTypes['sendSMS'][0])
+    public function sendSmsRequest($sMSPayload = null, string $contentType = self::contentTypes['sendSms'][0])
     {
 
 
