@@ -61,7 +61,7 @@ Class | Method | HTTP request | Description
 *SmsApi* | [**getBalance**](docs/Api/SmsApi.md#getbalance) | **GET** /sms/balance | Get SMS Balance
 *SmsApi* | [**getBrandNames**](docs/Api/SmsApi.md#getbrandnames) | **GET** /sms/brandNames | Get All Brand Names
 *SmsApi* | [**getDeliveryReport**](docs/Api/SmsApi.md#getdeliveryreport) | **GET** /sms/report/{smsID} | Get Delivery Report
-*SmsApi* | [**sendSMS**](docs/Api/SmsApi.md#sendsms) | **POST** /sms/send | Send SMS
+*SmsApi* | [**sendSms**](docs/Api/SmsApi.md#sendsms) | **POST** /sms/send | Send SMS
 
 ## Models
 
