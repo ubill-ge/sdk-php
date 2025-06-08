@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ObjectSerializer
  *
@@ -104,7 +105,7 @@ class ObjectSerializer
                     }
                 }
             } else {
-                foreach($data as $property => $value) {
+                foreach ($data as $property => $value) {
                     $values[$property] = self::sanitizeForSerialization($value);
                 }
             }
@@ -140,7 +141,9 @@ class ObjectSerializer
      */
     public static function sanitizeTimestamp($timestamp)
     {
-        if (!is_string($timestamp)) return $timestamp;
+        if (!is_string($timestamp)) {
+            return $timestamp;
+        }
 
         return preg_replace('/(:\d{2}.\d{6})\d*/', '$1', $timestamp);
     }
@@ -240,7 +243,7 @@ class ObjectSerializer
         }
 
         # Handle DateTime objects in query
-        if($openApiType === "\\DateTime" && $value instanceof \DateTime) {
+        if ($openApiType === "\\DateTime" && $value instanceof \DateTime) {
             return ["{$paramName}" => $value->format(self::$dateTimeFormat)];
         }
 
@@ -250,7 +253,9 @@ class ObjectSerializer
         // since \GuzzleHttp\Psr7\Query::build fails with nested arrays
         // need to flatten array first
         $flattenArray = function ($arr, $name, &$result = []) use (&$flattenArray, $style, $explode) {
-            if (!is_array($arr)) return $arr;
+            if (!is_array($arr)) {
+                return $arr;
+            }
 
             foreach ($arr as $k => $v) {
                 $prop = ($style === 'deepObject') ? $prop = "{$name}[{$k}]" : $k;
@@ -570,8 +575,12 @@ class ObjectSerializer
         }
 
         $castBool = Configuration::BOOLEAN_FORMAT_INT == Configuration::getDefaultConfiguration()->getBooleanFormatForQueryString()
-            ? function ($v) { return (int) $v; }
-            : function ($v) { return $v ? 'true' : 'false'; };
+            ? function ($v) {
+                return (int) $v;
+            }
+            : function ($v) {
+                return $v ? 'true' : 'false';
+            };
 
         $qs = '';
         foreach ($params as $k => $v) {
@@ -580,7 +589,7 @@ class ObjectSerializer
                 $qs .= $k;
                 $v = is_bool($v) ? $castBool($v) : $v;
                 if ($v !== null) {
-                    $qs .= '='.$encoder((string) $v);
+                    $qs .= '=' . $encoder((string) $v);
                 }
                 $qs .= '&';
             } else {
@@ -588,7 +597,7 @@ class ObjectSerializer
                     $qs .= $k;
                     $vv = is_bool($vv) ? $castBool($vv) : $vv;
                     if ($vv !== null) {
-                        $qs .= '='.$encoder((string) $vv);
+                        $qs .= '=' . $encoder((string) $vv);
                     }
                     $qs .= '&';
                 }

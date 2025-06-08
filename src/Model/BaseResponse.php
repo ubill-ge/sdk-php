@@ -1,4 +1,5 @@
 <?php
+
 /**
  * BaseResponse
  *
@@ -29,8 +30,8 @@
 
 namespace UBill\Sdk\Model;
 
-use \ArrayAccess;
-use \UBill\Sdk\ObjectSerializer;
+use ArrayAccess;
+use UBill\Sdk\ObjectSerializer;
 
 /**
  * BaseResponse Class Doc Comment
@@ -417,7 +418,7 @@ class BaseResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -443,5 +444,3 @@ class BaseResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-
