@@ -29,7 +29,7 @@
 
 namespace UBill\Sdk;
 
-use Exception;
+use \Exception;
 
 /**
  * ApiException Class Doc Comment

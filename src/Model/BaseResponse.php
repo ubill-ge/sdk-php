@@ -30,8 +30,8 @@
 
 namespace UBill\Sdk\Model;
 
-use ArrayAccess;
-use UBill\Sdk\ObjectSerializer;
+use \ArrayAccess;
+use \UBill\Sdk\ObjectSerializer;
 
 /**
  * BaseResponse Class Doc Comment
@@ -444,3 +444,5 @@ class BaseResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

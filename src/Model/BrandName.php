@@ -30,8 +30,8 @@
 
 namespace UBill\Sdk\Model;
 
-use ArrayAccess;
-use UBill\Sdk\ObjectSerializer;
+use \ArrayAccess;
+use \UBill\Sdk\ObjectSerializer;
 
 /**
  * BrandName Class Doc Comment
@@ -521,3 +521,5 @@ class BrandName implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

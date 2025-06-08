@@ -30,8 +30,8 @@
 
 namespace UBill\Sdk\Model;
 
-use ArrayAccess;
-use UBill\Sdk\ObjectSerializer;
+use \ArrayAccess;
+use \UBill\Sdk\ObjectSerializer;
 
 /**
  * DeliveryReportItem Class Doc Comment
@@ -441,3 +441,5 @@ class DeliveryReportItem implements ModelInterface, ArrayAccess, \JsonSerializab
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

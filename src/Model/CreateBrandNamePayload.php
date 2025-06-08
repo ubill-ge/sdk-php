@@ -30,8 +30,8 @@
 
 namespace UBill\Sdk\Model;
 
-use ArrayAccess;
-use UBill\Sdk\ObjectSerializer;
+use \ArrayAccess;
+use \UBill\Sdk\ObjectSerializer;
 
 /**
  * CreateBrandNamePayload Class Doc Comment
@@ -410,3 +410,5 @@ class CreateBrandNamePayload implements ModelInterface, ArrayAccess, \JsonSerial
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+
