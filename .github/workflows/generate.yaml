@@ -32,14 +32,14 @@ jobs:
 
       - name: Install File Post-processor
         run: |
-          curl -sSL https://github.com/squizlabs/PHP_CodeSniffer/releases/download/3.7.2/phpcbf.phar -o /usr/local/bin/phpcbf
-          chmod +x /usr/local/bin/phpcbf
+          curl -sSL https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/releases/download/v3.75.0/php-cs-fixer.phar -o /usr/local/bin/php-cs-fixer
+          chmod +x /usr/local/bin/php-cs-fixer
 
       - name: Generate SDK
         id: generate
         uses: ubill-ge/sdk-generator/.github/actions/generator@main
         env:
-          PHP_POST_PROCESS_FILE: 'phpcbf -q --standard=PSR12 --extensions=php'
+          PHP_POST_PROCESS_FILE: 'php-cs-fixer fix --allow-risky=yes'
         with:
           github-token: ${{ steps.app-token.outputs.token }}
           sdk: ${{ env.SDK }}
