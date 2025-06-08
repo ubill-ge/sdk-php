@@ -303,7 +303,7 @@ class ObjectSerializer
      */
     public static function convertBoolToQueryStringFormat(bool $value)
     {
-        if (Configuration::BOOLEAN_FORMAT_STRING === Configuration::getDefaultConfiguration()->getBooleanFormatForQueryString()) {
+        if (Configuration::BOOLEAN_FORMAT_STRING == Configuration::getDefaultConfiguration()->getBooleanFormatForQueryString()) {
             return $value ? 'true' : 'false';
         }
 
@@ -574,7 +574,7 @@ class ObjectSerializer
             throw new \InvalidArgumentException('Invalid type');
         }
 
-        $castBool = Configuration::BOOLEAN_FORMAT_INT === Configuration::getDefaultConfiguration()->getBooleanFormatForQueryString()
+        $castBool = Configuration::BOOLEAN_FORMAT_INT == Configuration::getDefaultConfiguration()->getBooleanFormatForQueryString()
             ? function ($v) { return (int) $v; }
         : function ($v) { return $v ? 'true' : 'false'; };
 
