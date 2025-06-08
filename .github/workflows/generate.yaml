@@ -6,6 +6,9 @@ on:
 jobs:
   generate:
     runs-on: ubuntu-24.04
+    env:
+      SDK: php
+      SDK_PATH: '${{ github.workspace }}/sdk'
     steps:
       - name: Get GitHub App token
         id: app-token
@@ -17,15 +20,15 @@ jobs:
 
       - name: Get GitHub App User ID
         id: user-id
-        run: echo "id=$(gh api "/users/${{ steps.app-token.outputs.app-slug }}[bot]" --jq .id)" >> "$GITHUB_OUTPUT"
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: echo "id=$(gh api "/users/${{ steps.app-token.outputs.app-slug }}[bot]" --jq .id)" >> "$GITHUB_OUTPUT"
 
       - name: Checkout
         uses: actions/checkout@v4
         with:
           token: ${{ steps.app-token.outputs.token }}
-          path: sdk
+          path: ${{ env.SDK_PATH }}
 
       - name: Install File Post-processor
         run: |
@@ -33,25 +36,20 @@ jobs:
           chmod +x /usr/local/bin/phpcbf
 
       - name: Generate SDK
+        id: generate
         uses: ubill-ge/sdk-generator/.github/actions/generator@main
         env:
           PHP_POST_PROCESS_FILE: 'phpcbf -q --standard=PSR12 --extensions=php'
         with:
           github-token: ${{ steps.app-token.outputs.token }}
-          sdk: php
-          output-path: '${{ github.workspace }}/sdk'
-
-      - name: Get SDK Version
-        id: gsv
-        run: |
-          PACKAGE_VERSION="$(jq -r '.version' ./sdk/composer.json)"
-
-          echo "version=${PACKAGE_VERSION}" >> "$GITHUB_OUTPUT"
+          sdk: ${{ env.SDK }}
+          output-path: ${{ env.SDK_PATH }}
 
       - name: Create PR
         uses: ubill-ge/sdk-generator/.github/actions/pr-creator@main
         with:
           github-token: ${{ steps.app-token.outputs.token }}
-          sdk: php
-          sdk-version: '${{ steps.gsv.outputs.version }}'
+          sdk: ${{ env.SDK }}
+          sdk-version: ${{ steps.generate.outputs.sdk-version }}
+          sdk-path: ${{ env.SDK_PATH }}
           committer: '${{ steps.app-token.outputs.app-slug }}[bot] <${{ steps.user-id.outputs.id }}+${{ steps.app-token.outputs.app-slug }}[bot]@users.noreply.github.com>'
