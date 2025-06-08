@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ApiException
  * PHP version 8.1
@@ -28,7 +29,7 @@
 
 namespace UBill\Sdk;
 
-use \Exception;
+use Exception;
 
 /**
  * ApiException Class Doc Comment

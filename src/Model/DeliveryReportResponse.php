@@ -1,4 +1,5 @@
 <?php
+
 /**
  * DeliveryReportResponse
  *
@@ -29,8 +30,8 @@
 
 namespace UBill\Sdk\Model;
 
-use \ArrayAccess;
-use \UBill\Sdk\ObjectSerializer;
+use ArrayAccess;
+use UBill\Sdk\ObjectSerializer;
 
 /**
  * DeliveryReportResponse Class Doc Comment
@@ -451,7 +452,7 @@ class DeliveryReportResponse implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -477,5 +478,3 @@ class DeliveryReportResponse implements ModelInterface, ArrayAccess, \JsonSerial
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-
