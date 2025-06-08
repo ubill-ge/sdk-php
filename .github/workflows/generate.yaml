@@ -9,6 +9,7 @@ jobs:
     env:
       SDK: php
       SDK_PATH: '${{ github.workspace }}/sdk'
+      PHP_VERSION: 8.3
     steps:
       - name: Get GitHub App token
         id: app-token
@@ -32,6 +33,11 @@ jobs:
         with:
           token: ${{ steps.app-token.outputs.token }}
           path: ${{ env.SDK_PATH }}
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
 
       - name: Install File Post-processor
         run: |
