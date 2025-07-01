@@ -1,7 +1,7 @@
 <?php
 
 /**
- * BrandName
+ * SendSMSRequest
  *
  * PHP version 8.1
  *
@@ -34,16 +34,16 @@ use ArrayAccess;
 use UBill\Sdk\ObjectSerializer;
 
 /**
- * BrandName Class Doc Comment
+ * SendSMSRequest Class Doc Comment
  *
  * @category Class
- * @description SMS brand name information
+ * @description Request payload for sending SMS
  * @package  UBill\Sdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class BrandName implements ModelInterface, ArrayAccess, \JsonSerializable
+class SendSMSRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class BrandName implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'BrandName';
+    protected static $openAPIModelName = 'SendSMSRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,10 +60,10 @@ class BrandName implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'string',
-        'name' => 'string',
-        'authorized' => 'string',
-        'createdAt' => 'string'
+        'brandID' => 'int',
+        'numbers' => 'int[]',
+        'text' => 'string',
+        'stopList' => 'bool'
     ];
 
     /**
@@ -74,10 +74,10 @@ class BrandName implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
-        'name' => null,
-        'authorized' => null,
-        'createdAt' => null
+        'brandID' => 'int64',
+        'numbers' => 'int64',
+        'text' => null,
+        'stopList' => null
     ];
 
     /**
@@ -86,10 +86,10 @@ class BrandName implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'id' => false,
-        'name' => false,
-        'authorized' => false,
-        'createdAt' => false
+        'brandID' => false,
+        'numbers' => false,
+        'text' => false,
+        'stopList' => false
     ];
 
     /**
@@ -178,10 +178,10 @@ class BrandName implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'name' => 'name',
-        'authorized' => 'authorized',
-        'createdAt' => 'createdAt'
+        'brandID' => 'brandID',
+        'numbers' => 'numbers',
+        'text' => 'text',
+        'stopList' => 'stopList'
     ];
 
     /**
@@ -190,10 +190,10 @@ class BrandName implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'name' => 'setName',
-        'authorized' => 'setAuthorized',
-        'createdAt' => 'setCreatedAt'
+        'brandID' => 'setBrandID',
+        'numbers' => 'setNumbers',
+        'text' => 'setText',
+        'stopList' => 'setStopList'
     ];
 
     /**
@@ -202,10 +202,10 @@ class BrandName implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'name' => 'getName',
-        'authorized' => 'getAuthorized',
-        'createdAt' => 'getCreatedAt'
+        'brandID' => 'getBrandID',
+        'numbers' => 'getNumbers',
+        'text' => 'getText',
+        'stopList' => 'getStopList'
     ];
 
     /**
@@ -265,10 +265,10 @@ class BrandName implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('authorized', $data ?? [], null);
-        $this->setIfExists('createdAt', $data ?? [], null);
+        $this->setIfExists('brandID', $data ?? [], null);
+        $this->setIfExists('numbers', $data ?? [], null);
+        $this->setIfExists('text', $data ?? [], null);
+        $this->setIfExists('stopList', $data ?? [], null);
     }
 
     /**
@@ -298,17 +298,17 @@ class BrandName implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+        if ($this->container['brandID'] === null) {
+            $invalidProperties[] = "'brandID' can't be null";
         }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+        if ($this->container['numbers'] === null) {
+            $invalidProperties[] = "'numbers' can't be null";
         }
-        if ($this->container['authorized'] === null) {
-            $invalidProperties[] = "'authorized' can't be null";
+        if ($this->container['text'] === null) {
+            $invalidProperties[] = "'text' can't be null";
         }
-        if ($this->container['createdAt'] === null) {
-            $invalidProperties[] = "'createdAt' can't be null";
+        if ($this->container['stopList'] === null) {
+            $invalidProperties[] = "'stopList' can't be null";
         }
         return $invalidProperties;
     }
@@ -326,109 +326,109 @@ class BrandName implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets id
+     * Gets brandID
      *
-     * @return string
+     * @return int
      */
-    public function getId()
+    public function getBrandID()
     {
-        return $this->container['id'];
+        return $this->container['brandID'];
     }
 
     /**
-     * Sets id
+     * Sets brandID
      *
-     * @param string $id Brand identifier
+     * @param int $brandID Brand identifier as integer
      *
      * @return self
      */
-    public function setId($id)
+    public function setBrandID($brandID)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        if (is_null($brandID)) {
+            throw new \InvalidArgumentException('non-nullable brandID cannot be null');
         }
-        $this->container['id'] = $id;
+        $this->container['brandID'] = $brandID;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets numbers
      *
-     * @return string
+     * @return int[]
      */
-    public function getName()
+    public function getNumbers()
     {
-        return $this->container['name'];
+        return $this->container['numbers'];
     }
 
     /**
-     * Sets name
+     * Sets numbers
      *
-     * @param string $name Brand name used as SMS sender
+     * @param int[] $numbers Array of phone numbers as integers
      *
      * @return self
      */
-    public function setName($name)
+    public function setNumbers($numbers)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        if (is_null($numbers)) {
+            throw new \InvalidArgumentException('non-nullable numbers cannot be null');
         }
-        $this->container['name'] = $name;
+        $this->container['numbers'] = $numbers;
 
         return $this;
     }
 
     /**
-     * Gets authorized
+     * Gets text
      *
      * @return string
      */
-    public function getAuthorized()
+    public function getText()
     {
-        return $this->container['authorized'];
+        return $this->container['text'];
     }
 
     /**
-     * Sets authorized
+     * Sets text
      *
-     * @param string $authorized Authorization status
+     * @param string $text SMS message text
      *
      * @return self
      */
-    public function setAuthorized($authorized)
+    public function setText($text)
     {
-        if (is_null($authorized)) {
-            throw new \InvalidArgumentException('non-nullable authorized cannot be null');
+        if (is_null($text)) {
+            throw new \InvalidArgumentException('non-nullable text cannot be null');
         }
-        $this->container['authorized'] = $authorized;
+        $this->container['text'] = $text;
 
         return $this;
     }
 
     /**
-     * Gets createdAt
+     * Gets stopList
      *
-     * @return string
+     * @return bool
      */
-    public function getCreatedAt()
+    public function getStopList()
     {
-        return $this->container['createdAt'];
+        return $this->container['stopList'];
     }
 
     /**
-     * Sets createdAt
+     * Sets stopList
      *
-     * @param string $createdAt Brand creation timestamp
+     * @param bool $stopList Enable/disable checking numbers in the stop list
      *
      * @return self
      */
-    public function setCreatedAt($createdAt)
+    public function setStopList($stopList)
     {
-        if (is_null($createdAt)) {
-            throw new \InvalidArgumentException('non-nullable createdAt cannot be null');
+        if (is_null($stopList)) {
+            throw new \InvalidArgumentException('non-nullable stopList cannot be null');
         }
-        $this->container['createdAt'] = $createdAt;
+        $this->container['stopList'] = $stopList;
 
         return $this;
     }

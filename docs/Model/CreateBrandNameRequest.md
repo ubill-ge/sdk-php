@@ -1,12 +1,9 @@
-# # BrandName
+# # CreateBrandNameRequest
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **string** | Brand identifier |
-**name** | **string** | Brand name used as SMS sender |
-**authorized** | **string** | Authorization status |
-**createdAt** | **string** | Brand creation timestamp |
+**brandName** | **string** | Brand name to create |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
