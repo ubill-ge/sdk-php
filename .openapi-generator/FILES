@@ -37,5 +37,12 @@ src/Model/SMSBalanceResponse.php
 src/Model/SendSMSRequest.php
 src/Model/SendSMSResponse.php
 src/ObjectSerializer.php
-test/Model/CreateBrandNameRequestTest.php
-test/Model/SendSMSRequestTest.php
+test/Api/SmsApiTest.php
+test/Model/BaseResponseTest.php
+test/Model/BrandNameTest.php
+test/Model/BrandNamesResponseTest.php
+test/Model/CreateBrandNameResponseTest.php
+test/Model/DeliveryReportItemTest.php
+test/Model/DeliveryReportResponseTest.php
+test/Model/SMSBalanceResponseTest.php
+test/Model/SendSMSResponseTest.php
